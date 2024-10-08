@@ -16,9 +16,9 @@ public class HomeController {
         return "tienda";
     }
 
-    @GetMapping("/carrito")
-    public String carrito() {
-        return "carrito";
+    @GetMapping("/checkout")
+    public String checkout() {
+        return "checkout";
     }
 
     @GetMapping("/favoritos")

@@ -51,6 +51,12 @@
                     <li class="nav-item">
                         <a id="cart" class="nav-link btn btn-outline-light" th:href="@{/carrito}">
                             <i class="fa-solid fa-cart-shopping"></i>
+                            <!-- Contenedor para el pop-up del carrito -->
+                            <div id="cart-popup" class="cart-popup shadow p-3 bg-white rounded" style="display: none; position: absolute; right: 0; top: 50px; z-index: 1000;">
+                                <h5>Carrito de Compras</h5>
+                                <ul id="cart-items" class="list-unstyled"></ul>
+                                <button class="btn btn-primary" id="procesar-compra">Procesar Compra</button>
+                            </div>
                         </a>
                     </li>
                 </ul>
@@ -123,4 +129,3 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>
-
