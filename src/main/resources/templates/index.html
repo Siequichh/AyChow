@@ -50,85 +50,19 @@
     <section class="py-5">
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                <!-- card #1 -->
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <img class="card-img-top" th:src="@{/img/1.png}" alt="Iphone 15 pro Max" />
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <h5 class="fw-bolder">Iphone 15 pro Max</h5>
-                                    <p>48 MP,512 GB y8GB ram</p>
-                                    <p class="h4">S/.7000</p>
-                                </div>
-                            </div>
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-outline-dark mt-auto add-to-cart-btn" data-id="${producto.idProducto}">
-                                        Agregar
-                                    </button>
-                                    <a class="btn btn-outline-secondary mt-auto" href="#Detallesproducto">Detalles</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <!-- card #2 -->
-                <div class="col mb-5">
+                <div th:each="producto : ${mejoresProductos}" class="col mb-5">
                     <div class="card h-100">
-                        <img class="card-img-top" th:src="@{/img/2.png}" alt="#nombreproducto" />
+                        <img class="card-img-top" th:src="@{'/productos/imagen/' + ${producto.idProducto}}" th:alt="${producto.nombre}" />
                         <div class="card-body p-4">
                             <div class="text-center">
-                                <h5 class="fw-bolder">Samsung Galaxy S24 Ultra 5G</h5>
-                                <p>272MP, 256GB, 12GB ram</p>
-                                <p class="h4">S/.5000</p>
+                                <h5 class="fw-bolder" th:text="${producto.nombre}">Nombre del producto</h5>
+                                <p th:text="${producto.detalle}">Detalles del producto</p>
+                                <p class="h4" th:text="'S/.' + ${producto.precio}">Precio</p>
                             </div>
                         </div>
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                             <div class="text-center">
-                                <button type="button" class="btn btn-outline-dark mt-auto add-to-cart-btn" data-id="${producto.idProducto}">
-                                    Agregar
-                                </button>
-                                <a class="btn btn-outline-secondary mt-auto" href="#Detallesproducto">Detalles</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- card #3 -->
-                <div class="col mb-5">
-                    <div class="card h-100">
-                        <img class="card-img-top" th:src="@{/img/3.png}" alt="#nombreproducto" />
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <h5 class="fw-bolder">Celular Xiaomi 14</h5>
-                                <p>112 MP, 512GB, 12GB Ram</p>
-                                <p class="h4">S/.3300</p>
-                            </div>
-                        </div>
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center">
-                                <button type="button" class="btn btn-outline-dark mt-auto add-to-cart-btn" data-id="${producto.idProducto}">
-                                    Agregar
-                                </button>
-                                <a class="btn btn-outline-secondary mt-auto" href="#Detallesproducto">Detalles</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- card #4 -->
-                <div class="col mb-5">
-                    <div class="card h-100">
-                        <img class="card-img-top" th:src="@{/img/4.png}" alt="#nombreproducto" />
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <h5 class="fw-bolder">Honor 200 Pro</h5>
-                                <p>112 MP, 512GB, 12GB Ram</p>
-                                <p class="h4">S/.3200</p>
-                            </div>
-                        </div>
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center">
-                                <button type="button" class="btn btn-outline-dark mt-auto add-to-cart-btn" data-id="${producto.idProducto}">
+                                <button type="button" class="btn btn-outline-dark mt-auto add-to-cart-btn" th:data-id="${producto.idProducto}">
                                     Agregar
                                 </button>
                                 <a class="btn btn-outline-secondary mt-auto" href="#Detallesproducto">Detalles</a>
@@ -140,187 +74,29 @@
         </div>
     </section>
 
-    <h2 class="text-center mb-2 mt-1 ">Equipos en descuento ¡Aprovecha!</h2>
+    <h2 class="text-center mb-2 mt-1">Equipos en descuento ¡Aprovecha!</h2>
 
     <section class="py-5 mb-auto mt-auto">
         <div id="myCarousel" class="carousel slide container carousel2 mb-2" data-bs-ride="carousel">
             <div class="carousel-inner w-100">
-                <div class="carousel-item carousel-item2 active">
+                <div th:each="producto, iterStat : ${productosEnDescuento}" class="carousel-item carousel-item2"
+                     th:classappend="${iterStat.index == 0} ? ' active' : ''">
                     <div class="col-md-3">
                         <div class="card card-body">
-                            <img class="card-img-top" th:src="@{/img/d1.png}" alt="Xiaomi Redmi Note 13 Pro" />
+                            <img class="card-img-top" th:src="@{'/productos/imagen/' + ${producto.idProducto}}" th:alt="${producto.nombre}" />
                             <div class="card-body p-4">
                                 <div class="text-center">
-                                    <h5 class="fw-bolder">Xiaomi Redmi Note 13 Pro</h5>
-                                    <p>256GB, 8GB ram, cámara principal 200MP</p>
-                                    <p class="text-danger"><del>S/.1500</del></p>
-                                    <p class="h4">S/.1069</p>
+                                    <h5 class="fw-bolder" th:text="${producto.nombre}">Nombre del producto</h5>
+                                    <p th:text="${producto.detalle}">Detalles del producto</p>
+                                    <p class="text-danger">
+                                        <del th:text="'S/.' + (${producto.precio} + 300)">Precio anterior</del>
+                                    </p>
+                                    <p class="h4" th:text="'S/.' + ${producto.precio}">Precio actual</p>
                                 </div>
                             </div>
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
-                                    <button type="button" class="btn btn-outline-dark mt-auto add-to-cart-btn" data-id="${producto.idProducto}">
-                                        Agregar
-                                    </button>
-                                    <a class="btn btn-outline-secondary mt-auto" href="#Detallesproducto">Detalles</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item carousel-item2">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="card-img-top" th:src="@{/img/d2.png}" alt="Xiaomi Redmi Note 12 Pro 5G" />
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <h5 class="fw-bolder"> Xiaomi Redmi Note 12 Pro</h5>
-                                    <p>256GB, 8GB ram, cámara principal 200MP </p>
-                                    <p class="text-danger"><del>S/.1800</del></p>
-                                    <p class="h4">S/.899</p>
-                                </div>
-                            </div>
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-outline-dark mt-auto add-to-cart-btn" data-id="${producto.idProducto}">
-                                        Agregar
-                                    </button>
-                                    <a class="btn btn-outline-secondary mt-auto" href="#Detallesproducto">Detalles</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item carousel-item2">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="card-img-top" th:src="@{/img/d3.png}" alt="Samsung Galaxy A55 5G" />
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <h5 class="fw-bolder">Samsung Galaxy A55 5G</h5>
-                                    <p>256GB, 8GB ram, cámara principal 50MP</p>
-                                    <p class="text-danger"><del>S/.1999</del></p>
-                                    <p class="h4"> S/.1199</p>
-                                </div>
-                            </div>
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-outline-dark mt-auto add-to-cart-btn" data-id="${producto.idProducto}">
-                                        Agregar
-                                    </button>
-                                    <a class="btn btn-outline-secondary mt-auto" href="#Detallesproducto">Detalles</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item carousel-item2">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="card-img-top" th:src="@{/img/d4.png}" alt="Samsung A34 5G " />
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <h5 class="fw-bolder"> Samsung A34 5G</h5>
-                                    <p>256GB, 8GB ram, cámara principal 48MP</p>
-                                    <p class="text-danger"><del>S/.1599</del></p>
-                                    <p class="h4">S/.999</p>
-                                </div>
-                            </div>
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-outline-dark mt-auto add-to-cart-btn" data-id="${producto.idProducto}">
-                                        Agregar
-                                    </button>
-                                    <a class="btn btn-outline-secondary mt-auto" href="#Detallesproducto">Detalles</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item carousel-item2">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="card-img-top" th:src="@{/img/d5.png}" alt="Motorola G84 " />
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <h5 class="fw-bolder">Motorola G84 </h5>
-                                    <p>256GB, 8GB ram, cámara principal 50MP</p>
-                                    <p class="text-danger"><del>S/.1499</del></p>
-                                    <p class="h4">S/.949</p>
-                                </div>
-                            </div>
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-outline-dark mt-auto add-to-cart-btn" data-id="${producto.idProducto}">
-                                        Agregar
-                                    </button>
-                                    <a class="btn btn-outline-secondary mt-auto" href="#Detallesproducto">Detalles</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item carousel-item2">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="card-img-top" th:src="@{/img/d6.png}" alt="Moto G53 5G" />
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <h5 class="fw-bolder">Moto G53 5G</h5>
-                                    <p>128GB, 6GB ram, cámara principal 50MP</p>
-                                    <p class="text-danger"><del>S/.1199</del></p>
-                                    <p class="h4">S/.689</p>
-                                </div>
-                            </div>
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-outline-dark mt-auto add-to-cart-btn" data-id="${producto.idProducto}">
-                                        Agregar
-                                    </button>
-                                    <a class="btn btn-outline-secondary mt-auto" href="#Detallesproducto">Detalles</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item carousel-item2">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="card-img-top" th:src="@{/img/d7.png}" alt="Zte Blade A54" />
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <h5 class="fw-bolder">Zte Blade A54</h5>
-                                    <p>128GB, 8GB ram, cámara principal 13MP</p>
-                                    <p class="text-danger"><del>S/.599</del></p>
-                                    <p class="h4">S/.329</p>
-                                </div>
-                            </div>
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-outline-dark mt-auto add-to-cart-btn" data-id="${producto.idProducto}">
-                                        Agregar
-                                    </button>
-                                    <a class="btn btn-outline-secondary mt-auto" href="#Detallesproducto">Detalles</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item carousel-item2">
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <img class="card-img-top" th:src="@{/img/d8.png}" alt="Nokia 6300 4G" />
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <h5 class="fw-bolder">Nokia 6300 4G</h5>
-                                    <p>520MB ram, cámara principal VGA</p>
-                                    <p class="text-danger"><del>S/.199</del></p>
-                                    <p class="h4">S/.99</p>
-                                </div>
-                            </div>
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-outline-dark mt-auto add-to-cart-btn" data-id="${producto.idProducto}">
+                                    <button type="button" class="btn btn-outline-dark mt-auto add-to-cart-btn" th:data-id="${producto.idProducto}">
                                         Agregar
                                     </button>
                                     <a class="btn btn-outline-secondary mt-auto" href="#Detallesproducto">Detalles</a>
@@ -338,13 +114,10 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
-        </div>
+
     </section>
-
-
 </main>
-
-<!-- Footer del base -->
+            <!-- Footer del base -->
 <div th:replace="~{base :: footer}"></div>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>

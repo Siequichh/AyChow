@@ -8,7 +8,12 @@ public class HomeController {
 
     @GetMapping("/")
     public String inicio() {
-        return "index";
+        return "redirect:/productos";
+    }
+
+    @GetMapping("/upload")
+    public String subida() {
+        return "upload";
     }
 
     @GetMapping("/tienda")

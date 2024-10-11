@@ -26,6 +26,7 @@ public class Producto {
     private String detalle;
 
     @Lob
+    @Basic(fetch = FetchType.LAZY)
     private byte[] imagen;
 
     @Column(nullable = false)
