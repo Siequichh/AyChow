@@ -46,4 +46,6 @@ public class HomeController {
 
     @GetMapping("/restaurarContraseña")
     public String restaurarContraseña() {return "restaurarContraseña";  }
+
+
 }
