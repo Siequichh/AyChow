@@ -8,7 +8,12 @@ public class HomeController {
 
     @GetMapping("/")
     public String inicio() {
-        return "index";
+        return "redirect:/productos";
+    }
+
+    @GetMapping("/upload")
+    public String subida() {
+        return "upload";
     }
 
     @GetMapping("/tienda")
@@ -41,4 +46,6 @@ public class HomeController {
 
     @GetMapping("/restaurarContraseña")
     public String restaurarContraseña() {return "restaurarContraseña";  }
+
+
 }
