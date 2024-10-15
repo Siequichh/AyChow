@@ -12,5 +12,6 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
     List<Producto> findByRatingGreaterThanEqual(float rating);
     List<Producto> findByRatingLessThanEqual(float rating);
     List<Producto> findByNombre(String nombre);
+    List<Producto> findByMarca(String marca);
 
 }

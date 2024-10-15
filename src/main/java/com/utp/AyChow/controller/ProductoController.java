@@ -118,6 +118,16 @@ public class ProductoController {
         return "redirect:/productos/productosAdmin";
     }
 
+    @GetMapping("/por-marca")
+    @ResponseBody
+    public ResponseEntity<List<Producto>> listarProductosPorMarca(@RequestParam("marca") String marca) {
+        List<Producto> productos = productoService.getProductosPorMarca(marca);
+        if (productos.isEmpty()) {
+            return ResponseEntity.noContent().build(); // Devuelve un 204 si no hay productos
+        }
+        return ResponseEntity.ok(productos); // Devuelve un 200 y la lista de productos
+    }
+
 
 
 }
