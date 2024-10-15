@@ -60,4 +60,13 @@ public class ProductoService {
             throw new EntityNotFoundException("Producto no encontrado con ID: " + idProducto);
         }
     }
+
+    // Método para obtener productos por marca
+    @Transactional
+    public List<Producto> getProductosPorMarca(String marca) {
+        List<Producto> productos = productoRepository.findByMarca(marca);
+        System.out.println(productos);  // Para ver qué productos se están devolviendo
+        return productos;
+    }
+
 }
