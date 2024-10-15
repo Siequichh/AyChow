@@ -21,53 +21,78 @@
         <h1 class="login-title mb-4">Crear nueva cuenta de cliente</h1>
         <img th:src="@{/img/logoAyChow.jpeg}" alt="Logo" class="mb-4 logo-img">
 
-        <form id="registro" th:action="@{/registro}">
+        <!-- Formulario corregido con el método POST -->
+        <form id="registro" th:action="@{/registro}" method="post">
             <div class="d-flex justify-content-between mt-3">
-                <input type="nombres" name="nombres" class="form-control me-3 mb-3" placeholder="Nombres" required>
-                <input type="apellidos" name="apellidos" class="form-control mb-3" placeholder="Apellidos" required>
+                <input type="text" name="nombres" class="form-control me-3 mb-3" placeholder="Nombres" required>
+                <input type="text" name="apellidos" class="form-control mb-3" placeholder="Apellidos" required>
             </div>
             <div class="form-group mb-3">
-                <input type="email" name="email" class="form-control" placeholder="Correo electrónico" required>
+                <input type="email" name="correo" class="form-control" placeholder="Correo electrónico" required>
             </div>
             <div class="form-group mb-3">
                 <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
             </div>
-            <p class="fw-bold lh-1 text-small">Utilice al menos una letra, un numero y siete caracteres</p>
+            <p class="fw-bold lh-1 text-small">Utilice al menos una letra, un número y siete caracteres</p>
             <button type="submit" class="btn btn-dark w-100">Crear Cuenta</button>
         </form>
     </div>
 </div>
 
 <!-- Modal de éxito -->
-<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="successModalLabel">Registro Exitoso</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Registro Exitoso</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Cuenta creada satisfactoriamente.
+                ¡Tu cuenta ha sido creada exitosamente!
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="closeModalBtn" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
 </div>
 
+
 <!-- Scripts de Bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
-<!-- Mostrar modal al enviar formulario -->
 <script>
     document.getElementById("registro").addEventListener("submit", function(event) {
         event.preventDefault(); // Evitar el envío del formulario
 
-        // Mostrar el modal
-        var successModal = new bootstrap.Modal(document.getElementById('successModal'));
-        successModal.show();
+        // Crear el objeto FormData con los datos del formulario
+        var formData = new FormData(this);
+
+        // Hacer la solicitud POST usando fetch
+        fetch(this.action, {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Mostrar el modal si el registro fue exitoso
+                    var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                    successModal.show();
+
+                    // Evento que se activa cuando el modal se cierra
+                    document.getElementById('successModal').addEventListener('hidden.bs.modal', function () {
+                        window.location.href = '/login'; // Redirigir a login.html cuando se cierre el modal
+                    });
+                } else {
+                    alert("Error al crear la cuenta. Inténtelo de nuevo.");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     });
 </script>
+
+
 </body>
 </html>

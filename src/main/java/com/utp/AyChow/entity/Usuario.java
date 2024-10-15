@@ -1,8 +1,6 @@
 package com.utp.AyChow.entity;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -10,15 +8,20 @@ import java.util.List;
 public class Usuario extends Persona {
 
     @ManyToOne
-    @JoinColumn(name = "id_rol",nullable = false)
+    @JoinColumn(name = "id_rol", nullable = false)
     private Rol rol;
 
     private String direccion;
     private String telefono;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL) // Considera el tipo de cascada según tus necesidades
     private List<Venta> ventas;
 
+    // Constructor por defecto
+    public Usuario() {
+        super(); // Llama al constructor de la clase base
+        this.rol = new Rol(); // Inicializa rol para evitar NullPointerException
+    }
 
     public Usuario(Rol rol, String direccion, String telefono, List<Venta> ventas) {
         this.rol = rol;
@@ -43,6 +46,7 @@ public class Usuario extends Persona {
         this.ventas = ventas;
     }
 
+    // Getters y setters
     public Rol getRol() {
         return rol;
     }
