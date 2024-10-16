@@ -66,7 +66,8 @@
                                         th:data-id="${producto.idProducto}"
                                         th:data-title="${producto.nombre}"
                                         th:data-price="${producto.precio}"
-                                        th:data-thumbnail="@{'/productos/imagen/' + ${producto.idProducto}}">
+                                        th:data-thumbnail="@{'/productos/imagen/' + ${producto.idProducto}}"
+                                        th:data-description="${producto.detalle}">
                                 <i class="fas fa-star"></i> Favoritos
 
                                 </button>
@@ -109,7 +110,8 @@
                                             th:data-id="${producto.idProducto}"
                                             th:data-title="${producto.nombre}"
                                             th:data-price="${producto.precio}"
-                                            th:data-thumbnail="@{'/productos/imagen/' + ${producto.idProducto}}">
+                                            th:data-thumbnail="@{'/productos/imagen/' + ${producto.idProducto}}"
+                                            th:data-description="${producto.detalle}">
                                         <i class="fas fa-star"></i> Favoritos
                                     </button>
                                     <a class="btn btn-outline-secondary mt-auto"

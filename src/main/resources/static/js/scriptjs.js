@@ -26,12 +26,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const title = button.getAttribute('data-title');
             const price = button.getAttribute('data-price');
             const thumbnail = button.getAttribute('data-thumbnail');
+            const description = button.getAttribute('data-description') || 'Descripción no disponible';
             let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
             const productoExistente = favoritos.find(item => item.id === id);
             if (productoExistente) {
                 alert('Ya añadiste este producto a favoritos.');
             } else {
-                favoritos.push({ id, title, price, thumbnail });
+                favoritos.push({ id, title, price, thumbnail, description });
                 alert('Añadido a favoritos.');
                 localStorage.setItem('favoritos', JSON.stringify(favoritos));
             }
