@@ -12,8 +12,7 @@ public class RegistroService {
     private UsuarioRepository usuarioRepository;
 
     public void registrarUsuario(Usuario usuario) {
-        // Aquí puedes agregar lógica de validación si es necesario
-        // Por ejemplo, verificar si el correo ya está en uso
+
 
         // Guardar el usuario en la base de datos
         usuarioRepository.save(usuario);

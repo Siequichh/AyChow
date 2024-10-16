@@ -16,25 +16,28 @@ $('.carousel2 .carousel-item2').each(function(){
     }
 });
 //funcion para añadir a favortios
-function agregarAFavoritos(event) {
-    const id = event.target.getAttribute('data-id');
-    const title = event.target.getAttribute('data-title');
-    const price = event.target.getAttribute('data-price');
-    const thumbnail = event.target.getAttribute('data-thumbnail');
 
-    let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
 
-    const productoExistente = favoritos.find(item => item.id === id);
-    if (productoExistente) {
-        alert('Ya añadiste este producto a favoritos.');
-    } else {
-        favoritos.push({ id, title, price, thumbnail });
-        alert('añadido a favoritos.');
-
-        localStorage.setItem('favoritos', JSON.stringify(favoritos));
-
-    }
-}
+document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelectorAll('.btn-outline-warning');
+    buttons.forEach(button => {
+        button.addEventListener('click', function () {
+            const id = button.getAttribute('data-id');
+            const title = button.getAttribute('data-title');
+            const price = button.getAttribute('data-price');
+            const thumbnail = button.getAttribute('data-thumbnail');
+            let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+            const productoExistente = favoritos.find(item => item.id === id);
+            if (productoExistente) {
+                alert('Ya añadiste este producto a favoritos.');
+            } else {
+                favoritos.push({ id, title, price, thumbnail });
+                alert('Añadido a favoritos.');
+                localStorage.setItem('favoritos', JSON.stringify(favoritos));
+            }
+        });
+    });
+});
 
 $(document).ready(function() {
     // Evento para manejar clic en los botones de filtro

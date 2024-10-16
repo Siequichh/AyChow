@@ -40,8 +40,20 @@
                 </div>
                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                     <div class="text-center">
-                        <button type="button" class="btn btn-outline-dark mt-auto add-to-cart-btn" th:data-id="${producto.idProducto}">Agregar</button>
-                        <a class="btn btn-outline-secondary mt-auto" href="#Detallesproducto">Detalles</a>
+                        <button type="button" class="btn btn-outline-warning mt-auto"
+                                th:data-id="${producto.idProducto}"
+                                th:data-title="${producto.nombre}"
+                                th:data-price="${producto.precio}"
+                                th:data-thumbnail="@{'/productos/imagen/' + ${producto.idProducto}}">
+                            <i class="fas fa-star"></i> Favoritos
+                        </button>
+                        <a class="btn btn-outline-secondary mt-auto"
+                           th:href="@{'/productos/detalles/' + ${producto.idProducto}}">
+                            Detalles
+                        </a>
+                        <button type="button" class="btn btn-primary mt-auto">
+                            Agregar al Carro
+                        </button>
                     </div>
                 </div>
             </div>

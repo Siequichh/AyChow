@@ -128,6 +128,13 @@ public class ProductoController {
         return ResponseEntity.ok(productos); // Devuelve un 200 y la lista de productos
     }
 
+    @GetMapping("/detalles/{id}")
+    public String detallesProducto(@PathVariable Long id, Model model) {
+        Producto producto = productoService.getProductoById(id);
+        model.addAttribute("producto", producto);
+        return "detallesProducto";
+    }
 
 
-}
+
+    }
